@@ -6,7 +6,8 @@
 |---|---|---|---|---|---|---|
 | [P-001](#p-001) | Người bị che 50–70% có gán `person` không? | Guideline mơ hồ | 2D | §3.2 | ✅ Đã chốt | [QĐ-001](so-quyet-dinh.md#qđ-001) |
 | [P-002](#p-002) | Cuboid `pedestrian` khi point cloud quá thưa | Guideline chưa nói tới | 3D | §5.1 | ✅ Đã chốt | [QĐ-002](so-quyet-dinh.md#qđ-002) |
-| [P-003](#p-003) | Xe máy gán `bicycle` hay bỏ qua? | Guideline chưa nói tới | 2D | §3.1 | 🗣️ Đang bàn |  |
+| [P-003](#p-003) | Xe máy gán `bicycle` hay bỏ qua? | Guideline chưa nói tới | 2D | §3.1 | ↗️ Hỏi BTC |  |
+| [P-004](#p-004) | Kéo track video chậm, lệch khung khi xe rẽ | Pain point công cụ | 2D tracking | §6 | 🔴 Mở |  |
 
 **Loại**
 
@@ -67,4 +68,17 @@
   1. Gán `bicycle` cho mọi xe hai bánh.
   2. Không gán xe máy (ngoài label set), chỉ gán người lái là `person`.
 - **Xử lý tạm trong lúc chờ:** Không gán xe máy, chỉ gán người lái.
-- **Kết quả:** 🗣️ Đang bàn
+- **Kết quả:** ↗️ Đã hỏi BTC, chờ trả lời
+
+## P-004
+
+**Kéo track qua nhiều frame video rất chậm, hay lệch khung khi xe đổi hướng**
+
+- **Loại:** Pain point công cụ
+- **Loại công việc:** 2D (tracking video)
+- **Mục guideline:** §6
+- **Người phát hiện:** Bình Lê 10/10/2026
+- **Link CVAT:** http://localhost:8080/tasks/44/jobs/126?frame=30
+- **Mô tả:** Mỗi track phải đặt keyframe gần như mỗi 5 frame vì nội suy tuyến tính lệch khi xe rẽ; job 60 frame mất khoảng 2 giờ.
+- **Xử lý tạm trong lúc chờ:** Đặt keyframe ở frame xe bắt đầu và kết thúc rẽ trước, sau đó mới thêm keyframe giữa.
+- **Kết quả:** 🔴 Mở — nếu tuần 2 vẫn chậm sẽ làm tool trong `source-tool/`
